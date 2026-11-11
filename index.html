@@ -146,7 +146,7 @@ function build(q){
       const key=q.k+": "+r; row.append(pills(n+"_"+ix,q.o,key)); fs.append(row); });
   } else if(q.y==="c"){
     const boxes=[]; const sync=()=>{ const full=q.max&&(A[q.k]||[]).length>=q.max;
-      boxes.forEach(b=>{ const off=full&&!b.i.checked; b.i.disabled=off; b.lb.classList.toggle("off",off); }); };
+      boxes.forEach(b=>{ const off=!!(full&&!b.i.checked); b.i.disabled=off; b.lb.classList.toggle("off",off); }); };
     q.o.forEach(o=>{ const lb=el("label",{class:"opt"},`<input type="checkbox"><span>${esc(o)}</span>`);
       const i=lb.querySelector("input"); i.checked=(A[q.k]||[]).includes(o);
       i.onchange=()=>{ const s=new Set(A[q.k]||[]); i.checked?s.add(o):s.delete(o); A[q.k]=q.o.filter(x=>s.has(x)); save(); sync(); };
